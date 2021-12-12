@@ -1,0 +1,54 @@
+<div class="fx">
+  <h1 mat-dialog-title>Add entry</h1>
+  <span class="fx-auto"></span>
+  <button mat-icon-button (click)="dialogRef.close()" aria-label="Close">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+<div mat-dialog-content>
+  <p>Capture your thoughts and ideas or just write a quick note</p>
+  <mat-form-field appearance="fill">
+    <mat-label>Your text</mat-label>
+    <textarea
+      matInput
+      [(ngModel)]="entry.content"
+      name="new_entry_content"
+      rows="8"
+      cdkTextareaAutosize
+    ></textarea>
+  </mat-form-field>
+  <h4>(Optional) Select a tag</h4>
+  <div class="fx">
+    <mat-form-field appearance="fill">
+      <mat-label>Tag</mat-label>
+      <mat-select [(ngModel)]="entry.tags" multiple>
+        <mat-option
+          *ngFor="let tag of tagService.tags$ | async"
+          [value]="tag.id"
+        >
+          {{ tag.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button
+      mat-icon-button
+      class="create-tag-button"
+      aria-label="Create new tag"
+    >
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+  <mat-checkbox [(ngModel)]="entry.favorite">Mark as favorite</mat-checkbox>
+</div>
+<div mat-dialog-actions>
+  <span class="fx-auto"></span>
+  <button mat-button (click)="dialogRef.close()">Cancel</button>
+  <button
+    color="primary"
+    mat-raised-button
+    [mat-dialog-close]="entry"
+    cdkFocusInitial
+  >
+    Save
+  </button>
+</div>

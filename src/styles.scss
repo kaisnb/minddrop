@@ -8,3 +8,141 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
+// ###################################################################################
+// Utilities
+// ###################################################################################
+.scroll {
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+// ###################################################################################
+// TODO Move to theme
+// ###################################################################################
+body {
+  /* Shouldn't that be provided by the theme? */
+  color: #fff;
+  background-color: #303030;
+}
+
+.light-bg {
+  background-color: #424242;
+}
+
+.border-top {
+  border-top: 1px solid #fff;
+}
+
+.border-bottom {
+  border-bottom: 1px solid #fff;
+}
+
+// ###################################################################################
+// Layouting Utilities
+// ###################################################################################
+.fx {
+  /* Same as fx-row since row is default flex direction */
+  display: flex;
+}
+
+.fx-1 {
+  flex: 1 1 0%;
+}
+
+.fx-auto {
+  flex: 1 1 auto;
+}
+
+.fx-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.fx-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.fx-center {
+  align-items: center;
+  justify-content: center;
+}
+
+.fx-center-y {
+  align-items: center;
+}
+
+.fx-center-x {
+  justify-content: center;
+}
+
+// ###################################################################################
+// Generate Spacing Utilities
+// https://gist.github.com/furey/aa886e3117f103af6046fc1978d5ca09#file-spacing-scss
+// ###################################################################################
+$sizeUnit: rem;
+$marginKey: "m";
+$paddingKey: "p";
+$separator: "-";
+$sizes: (
+  ("0", 0),
+  ("0\\.5", 0.125),
+  ("1", 0.25),
+  ("1\\.5", 0.375),
+  ("2", 0.5),
+  ("2\\.5", 0.625),
+  ("3", 0.75),
+  ("3\\.5", 0.875),
+  ("4", 1),
+  ("5", 1.25),
+  ("6", 1.5),
+  ("7", 1.75),
+  ("8", 2)
+);
+$positions: (("t", "top"), ("r", "right"), ("b", "bottom"), ("l", "left"));
+
+@function sizeValue($key, $value) {
+  @return $value + $sizeUnit;
+}
+
+@each $size in $sizes {
+  $sizeKey: nth($size, 1);
+  $sizeValue: nth($size, 2);
+
+  .#{$marginKey}#{$separator}#{$sizeKey} {
+    margin: sizeValue($sizeKey, $sizeValue) !important;
+  }
+  .#{$paddingKey}#{$separator}#{$sizeKey} {
+    padding: sizeValue($sizeKey, $sizeValue) !important;
+  }
+
+  .#{$marginKey}y#{$separator}#{$sizeKey} {
+    margin-top: sizeValue($sizeKey, $sizeValue) !important;
+    margin-bottom: sizeValue($sizeKey, $sizeValue) !important;
+  }
+  .#{$paddingKey}y#{$separator}#{$sizeKey} {
+    padding-top: sizeValue($sizeKey, $sizeValue) !important;
+    padding-bottom: sizeValue($sizeKey, $sizeValue) !important;
+  }
+
+  .#{$marginKey}x#{$separator}#{$sizeKey} {
+    margin-left: sizeValue($sizeKey, $sizeValue) !important;
+    margin-right: sizeValue($sizeKey, $sizeValue) !important;
+  }
+  .#{$paddingKey}x#{$separator}#{$sizeKey} {
+    padding-left: sizeValue($sizeKey, $sizeValue) !important;
+    padding-right: sizeValue($sizeKey, $sizeValue) !important;
+  }
+
+  @each $position in $positions {
+    $posKey: nth($position, 1);
+    $posValue: nth($position, 2);
+    .#{$marginKey}#{$posKey}#{$separator}#{$sizeKey} {
+      margin-#{$posValue}: sizeValue($sizeKey, $sizeValue) !important;
+    }
+    .#{$paddingKey}#{$posKey}#{$separator}#{$sizeKey} {
+      padding-#{$posValue}: sizeValue($sizeKey, $sizeValue) !important;
+    }
+  }
+}

@@ -1,0 +1,10 @@
+mat-toolbar {
+  height: 44px;
+
+  /* Without we see vert & horz scrollbars for a short moment */
+  overflow: hidden;
+}
+
+.app-icon {
+  padding-right: 16px;
+}

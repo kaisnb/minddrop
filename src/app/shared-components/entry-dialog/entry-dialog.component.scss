@@ -1,0 +1,18 @@
+mat-form-field {
+  width: 100%;
+}
+
+div[mat-dialog-content] {
+  /*FIXME: Very fragile. Rather create a fully custom dialog template.*/
+  max-height: calc(100vh - 164px);
+}
+
+.create-tag-button {
+  height: 52px;
+  width: 52px;
+}
+
+mat-checkbox {
+  /* Without the margin the checkbox causes the mat-dialog-content to start scroll */
+  margin: 8px 0;
+}

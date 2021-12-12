@@ -1,0 +1,33 @@
+.wrapper {
+  height: 48px;
+  box-sizing: border-box;
+
+  /* Without we see vert & horz scrollbars for a short moment */
+  overflow: hidden;
+
+  .nav-item {
+    flex: 1 1 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .bg-box {
+      width: 80%;
+      height: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  .nav-item.selected .bg-box {
+    color: white;
+    border-radius: 20px;
+  }
+
+  .avatar {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+  }
+}

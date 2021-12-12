@@ -1,1 +1,24 @@
-<p>quick-drop works!</p>
+<div class="fx-col">
+  <div class="fx-row fx-center-y m-2">
+    <h2 style="margin: 0">
+      Orphan entries: {{ entryService.orphanCounter$ | async }}
+    </h2>
+    <span class="fx-auto"></span>
+    <mat-icon>info_outline</mat-icon>
+  </div>
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="openCreateDialog()"
+    class="m-2"
+  >
+    Drop thought
+  </button>
+  <div
+    *ngFor="let entry of entryService.orphanEntries$ | async"
+    (click)="openUpdateDialog(entry)"
+    class="entry-container light-bg p-2 m-2"
+  >
+    {{ entry.content }}
+  </div>
+</div>

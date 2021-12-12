@@ -1,0 +1,6 @@
+- Use SVG Icons and remove overflow: hidden; hacks
+- Fix typo favorties
+- Add preloading of routes
+- Add page animations to
+- Refactor footer to use button
+- Make quick drop the default route
